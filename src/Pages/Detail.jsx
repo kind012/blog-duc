@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../filebase";
 import Tags from "../components/Tags";
+import Footer from "../components/Footer";
 
 const Detail = ({ setActive }) => {
   const { id } = useParams();
@@ -52,6 +53,9 @@ const Detail = ({ setActive }) => {
         </div>
         <Tags tags={tags} />
       </div>
+      <div className="border-b-2 border-spacing-36"></div>
+
+      <Footer />
     </div>
   );
 };
