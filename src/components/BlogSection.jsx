@@ -14,7 +14,10 @@ const BlogSection = ({ blogs, handleDelete }) => {
       </div>
       <div className="flex flex-wrap gap-4 ">
         {blogs?.map((item) => (
-          <div className="rounded-lg shadow-md w-widths" key={item.id}>
+          <div
+            className="flex-wrap rounded-lg shadow-md w-widths "
+            key={item.id}
+          >
             <div className="relative max-w-xs overflow-hidden bg-no-repeat bg-cover rounded-3xl">
               <Link to={`/detail/${item.id}`}>
                 <img
@@ -39,16 +42,18 @@ const BlogSection = ({ blogs, handleDelete }) => {
                   {item.title}
                 </a>
               </div>
-              <div className="px-4 mb-5 line-clamp-4 font-Inter pt-[10px]">
+              <div className="px-4 mb-5 flex-1 min-h-[100px] line-clamp-4 font-Inter pt-[10px]">
                 {excerpt(item.description, 120)}
               </div>
             </div>
-            <div className="px-4 mt-5">
+            <div className="px-4 ">
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
                   marginBottom: "20px",
+                  cursor: "pointer",
+                  marginBottom: "10px",
                 }}
               >
                 <FontAwesomeIcon
