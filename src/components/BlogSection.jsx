@@ -53,7 +53,6 @@ const BlogSection = ({ blogs, handleDelete }) => {
                   justifyContent: "space-between",
                   marginBottom: "20px",
                   cursor: "pointer",
-                  marginBottom: "10px",
                 }}
               >
                 <FontAwesomeIcon

@@ -47,15 +47,16 @@ const Detail = ({ setActive }) => {
           />
         </div>
         <div>
-          <p className="max-w-[800px] m-auto line-clamp-3 mb-[70px] leading-5">
+          <p
+            className="first-letter:text-5xl first-letter:font-bold first-letter:text-slate-900
+  first-letter:mr-3 first-letter:float-left max-w-[800px] m-auto mb-[70px] leading-5"
+          >
             {blog?.description}
           </p>
         </div>
         <Tags tags={tags} />
       </div>
       <div className="border-b-2 border-spacing-36"></div>
-
-      <Footer />
     </div>
   );
 };

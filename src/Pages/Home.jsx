@@ -69,7 +69,6 @@ const Home = ({ setActive }) => {
           <Tags tags={tags} />
         </div>
       </div>
-      <div className="border-b-2 border-spacing-36"></div>
 
       <Footer />
     </div>
