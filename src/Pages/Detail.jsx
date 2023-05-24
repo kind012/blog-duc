@@ -1,9 +1,8 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../filebase";
-import Tags from "../components/Tags";
-import Footer from "../components/Footer";
+import { db } from "../components/firebase/filebase";
+import Tags from "../layout/Tags";
 
 const Detail = ({ setActive }) => {
   const { id } = useParams();
@@ -54,7 +53,10 @@ const Detail = ({ setActive }) => {
             {blog?.description}
           </p>
         </div>
-        <Tags tags={tags} />
+        <p className="flex flex-row">
+          Tags:
+          <Tags tags={tags} />
+        </p>
       </div>
       <div className="border-b-2 border-spacing-36"></div>
     </div>

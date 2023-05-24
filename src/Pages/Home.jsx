@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../components/Footer";
+import Footer from "../layout/Footer";
 import { collection, deleteDoc, onSnapshot, doc } from "firebase/firestore";
-import { db } from "../filebase";
-import BlogSection from "../components/BlogSection";
+import { db } from "../components/firebase/filebase";
+import BlogSection from "../layout/BlogSection";
 import { toast } from "react-toastify";
-import Tags from "../components/Tags";
+import Tags from "../layout/Tags";
 
 const Home = ({ setActive }) => {
   const [loading, setLoading] = useState(true);
@@ -45,33 +45,38 @@ const Home = ({ setActive }) => {
       console.log(err);
     }
   };
-  console.log("blogs ", blogs);
   return (
-    <div className="container mt-[80px]">
-      <div className="pb-[130px]">
-        <h1 className="max-w-[1381px] text-[92px] font-light leading-[110px]">
-          <strong className="w-[760px] text-[92px] font-bold">
-            Hey, we're Bloger
-          </strong>
-          .Let see our Stories and ideas
-        </h1>
-      </div>
-      <div className="border-b-2 border-spacing-36"></div>
-      <div className="">
-        <div className="pt-[15px]">
-          <BlogSection
-            blogs={blogs}
-            tags={setTags}
-            handleDelete={handleDelete}
-          />
+    <>
+      <div className="container mt-[80px]">
+        <div className="pb-[130px]">
+          <h1 className="max-w-[1381px] text-[92px] font-light leading-[110px]">
+            <strong className="w-[760px] text-[92px] font-bold">
+              Hey, we're Bloger
+            </strong>
+            .Let see our Stories and ideas
+          </h1>
         </div>
-        <div>
-          <Tags tags={tags} />
-        </div>
-      </div>
+        <div className="border-b-2 border-spacing-36"></div>
+        <div className="">
+          <div className="pt-[15px]">
+            {loading && (
+              <BlogSection
+                blogs={blogs}
+                tags={setTags}
+                handleDelete={handleDelete}
+              />
+            )}
+          </div>
 
-      <Footer />
-    </div>
+          <div className="flex flex-row pt-5">
+            Tag:
+            <Tags tags={tags} />
+          </div>
+        </div>
+
+        <Footer />
+      </div>
+    </>
   );
 };
 

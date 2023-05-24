@@ -6,7 +6,7 @@ const Header = ({ active, setActive }) => {
   return (
     <div className="container flex justify-between pt-[10px] items-center px-[70px]">
       <div>
-        <a href="#" className="">
+        <a href="/" className="">
           <img src={logo} alt="" className="w-[129px]" />
         </a>
       </div>

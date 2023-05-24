@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { excerpt } from "../ultility";
+import { excerpt } from "../utils/index";
 
 const BlogSection = ({ blogs, handleDelete }) => {
   return (
@@ -51,6 +51,7 @@ const BlogSection = ({ blogs, handleDelete }) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
+                  alignItems: "center",
                   marginBottom: "20px",
                   cursor: "pointer",
                 }}

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { db, storage } from "../filebase";
+import { db } from "../components/firebase/filebase";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { toast } from "react-toastify";
 import {
   addDoc,
   collection,
@@ -13,6 +11,7 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
+import UploadFile from "../components/uploadFile/UploadFile";
 
 const initialState = {
   title: "",
@@ -30,7 +29,7 @@ const categoryOption = [
   "Program Language",
 ];
 
-const AddEditBlog = ({ setActive }) => {
+const AddEditBlog = ({}) => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
@@ -80,43 +79,6 @@ const AddEditBlog = ({ setActive }) => {
     }
     navigate("/");
   };
-  useEffect(() => {
-    const uploadFile = () => {
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setProgress(progress);
-          console.log(progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            toast.info("Image upload to firebase successfully");
-            setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
-          });
-        }
-      );
-    };
-
-    file && uploadFile();
-  }, [file]);
 
   useEffect(() => {
     id && getBlogDetail();
@@ -174,8 +136,8 @@ const AddEditBlog = ({ setActive }) => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
               <option value={categoryOption}>Choose a category</option>
-              {categoryOption.map((option, index) => (
-                <option value={option || ""} key={index}>
+              {categoryOption.map((option, i) => (
+                <option value={option || ""} key={i}>
                   {option}
                 </option>
               ))}
@@ -191,43 +153,12 @@ const AddEditBlog = ({ setActive }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="flex items-center justify-center w-full mb-6">
-            <label
-              htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-            >
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg
-                  aria-hidden="true"
-                  className="w-10 h-10 mb-3 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                  ></path>
-                </svg>
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">Click to upload</span> or drag
-                  and drop
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </p>
-              </div>
-              <input
-                id="dropzone-file"
-                type="file"
-                className="hidden"
-                onChange={(e) => setFile(e.target.files[0])}
-              />
-            </label>
-          </div>
+          <UploadFile
+            file={file}
+            setProgress={setProgress}
+            setForm={setForm}
+            setFile={setFile}
+          />
           <div className="flex items-center justify-center">
             <button
               className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
