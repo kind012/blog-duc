@@ -69,7 +69,7 @@ const AddEditBlog = ({}) => {
             ...form,
             timestamp: serverTimestamp(),
           });
-          toast.success("Blog create successfully");
+          toast.success("Blog update successfully");
         } catch (err) {
           console.log(err);
         }

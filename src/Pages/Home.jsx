@@ -53,7 +53,7 @@ const Home = ({ setActive }) => {
             <strong className="w-[760px] text-[92px] font-bold">
               Hey, we're Bloger
             </strong>
-            .Let see our Stories and ideas
+            .Let see Stories
           </h1>
         </div>
         <div className="border-b-2 border-spacing-36"></div>

@@ -13,6 +13,7 @@ const BlogSection = ({ blogs, handleDelete }) => {
         </h2>
       </div>
       <div className="flex flex-wrap gap-4 ">
+        {/* Nhan props vao de lay ra cac du lieu cua blog vua tao hi */}
         {blogs?.map((item) => (
           <div
             className="flex-wrap rounded-lg shadow-md w-widths "
