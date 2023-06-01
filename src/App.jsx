@@ -1,6 +1,6 @@
 import Home from "./Pages/Home";
 import Detail from "./Pages/Detail";
-import AddEditBlog from "./Pages/AddEditBlog";
+import AddEditBlog from "./components/AddBlog/AddBlog";
 import NotFound from "./Pages/NotFound";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -29,10 +29,7 @@ function App() {
           <ToastContainer position="top-right" />
           <Routes>
             <Route path="/" element={<Home setActive={setActive} />} />
-            <Route
-              path="/detail/:id"
-              element={<Detail setActive={setActive} />}
-            />
+            <Route path="/detail/:id" element={<Detail />} />
             <Route
               path="/create"
               element={<AddEditBlog setActive={setActive} />}

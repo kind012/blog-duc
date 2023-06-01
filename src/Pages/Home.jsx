@@ -6,7 +6,7 @@ import BlogSection from "../layout/BlogSection";
 import { toast } from "react-toastify";
 import Tags from "../layout/Tags";
 
-const Home = ({ setActive }) => {
+const Home = () => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
   const [tags, setTags] = useState([]);
@@ -23,7 +23,6 @@ const Home = ({ setActive }) => {
         const uniqueTags = [...new Set(tags)];
         setTags(uniqueTags);
         setBlogs(list);
-        setActive("home");
       },
       (err) => {
         console.log(err);

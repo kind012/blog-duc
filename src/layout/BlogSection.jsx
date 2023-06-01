@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { excerpt } from "../utils/index";
-
 const BlogSection = ({ blogs, handleDelete }) => {
   return (
     <div className="mb-[20px]">
@@ -47,7 +46,7 @@ const BlogSection = ({ blogs, handleDelete }) => {
                 {excerpt(item.description, 120)}
               </div>
             </div>
-            <div className="px-4 ">
+            <div className="px-4 h-[50px]">
               <div
                 style={{
                   display: "flex",

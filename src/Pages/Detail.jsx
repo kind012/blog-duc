@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { db } from "../components/firebase/filebase";
 import Tags from "../layout/Tags";
 
-const Detail = ({ setActive }) => {
+const Detail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [tags, setTags] = useState([]);
@@ -30,7 +30,6 @@ const Detail = ({ setActive }) => {
     const docRef = doc(db, "blogs", id);
     const blogDetail = await getDoc(docRef);
     setBlog(blogDetail.data());
-    setActive(null);
   };
   return (
     <div className="container">
@@ -53,10 +52,10 @@ const Detail = ({ setActive }) => {
             {blog?.description}
           </p>
         </div>
-        <p className="flex flex-row">
+        <div className="flex flex-row">
           Tags:
           <Tags tags={tags} />
-        </p>
+        </div>
       </div>
       <div className="border-b-2 border-spacing-36"></div>
     </div>

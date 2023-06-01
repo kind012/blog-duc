@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../components/firebase/filebase";
+import { db } from "../firebase/filebase";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
-import UploadFile from "../components/uploadFile/UploadFile";
+import UploadFile from "../uploadFile/UploadFile";
 
 const initialState = {
   title: "",
@@ -20,16 +20,9 @@ const initialState = {
   description: "",
 };
 
-const categoryOption = [
-  "Fashion",
-  "Technology",
-  "Dev",
-  "Sport",
-  "Business",
-  "Program Language",
-];
+const categoryOption = ["Technology", "Dev", "Sport", "Program Language"];
 
-const AddEditBlog = ({}) => {
+const AddEditBlog = () => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
@@ -69,7 +62,6 @@ const AddEditBlog = ({}) => {
             ...form,
             timestamp: serverTimestamp(),
           });
-          toast.success("Blog update successfully");
         } catch (err) {
           console.log(err);
         }
@@ -77,6 +69,7 @@ const AddEditBlog = ({}) => {
     } else {
       return toast.error("All fields are mandatory to fill");
     }
+
     navigate("/");
   };
 
