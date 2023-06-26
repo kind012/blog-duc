@@ -1,26 +1,11 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../components/firebase/filebase";
-import Tags from "../layout/Tags";
 
 const Detail = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
-  const [tags, setTags] = useState([]);
-
-  useEffect(() => {
-    const getBlogsData = async () => {
-      const blogRef = collection(db, "blogs");
-      const blogs = await getDocs(blogRef);
-      let tags = [];
-      blogs.docs.map((doc) => tags.push(...doc.get("tags")));
-      let uniqueTags = [...new Set(tags)];
-      setTags(uniqueTags);
-    };
-
-    getBlogsData();
-  }, []);
 
   useEffect(() => {
     id && getBlogDetail();
@@ -51,10 +36,6 @@ const Detail = () => {
           >
             {blog?.description}
           </p>
-        </div>
-        <div className="flex flex-row">
-          Tags:
-          <Tags tags={tags} />
         </div>
       </div>
       <div className="border-b-2 border-spacing-36"></div>

@@ -12,16 +12,6 @@ const Header = ({ active, setActive }) => {
       </div>
       <div className="font-Inter">
         <ul className="flex items-center justify-between gap-8 p-5 ">
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <li
-              className={` ${active === "home" ? "active" : ""}`}
-              onClick={() => setActive("home")}
-            >
-              <p className="px-3 py-2 text-lg font-medium text-[#151619] rounded-md hover:bg-gray-700 hover:text-white">
-                Home
-              </p>
-            </li>
-          </Link>
           <Link to="/create" style={{ textDecoration: "none" }}>
             <li
               className={` ${active === "create" ? "active" : ""}`}

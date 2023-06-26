@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { excerpt } from "../utils/index";
-const BlogSection = ({ blogs, handleDelete }) => {
+const BlogSection = ({ handleDelete, filteredBlog }) => {
   return (
     <div className="mb-[20px]">
       <div className="w-[450px] ">
@@ -12,8 +12,7 @@ const BlogSection = ({ blogs, handleDelete }) => {
         </h2>
       </div>
       <div className="flex flex-wrap gap-4 ">
-        {/* Nhan props vao de lay ra cac du lieu cua blog vua tao hi */}
-        {blogs?.map((item) => (
+        {filteredBlog?.map((item) => (
           <div
             className="flex-wrap rounded-lg shadow-md w-widths "
             key={item.id}
@@ -26,7 +25,6 @@ const BlogSection = ({ blogs, handleDelete }) => {
                   className="object-cover w-[328px] h-[393px]  transition duration-300 ease-in-out hover:scale-110 shrink-0"
                 />
               </Link>
-              <div></div>
             </div>
             <div>
               <div className="pt-[30px] py-[15px] px-[15px]">
